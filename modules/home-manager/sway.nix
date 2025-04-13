@@ -92,6 +92,7 @@
       modifier = "Mod4";
       terminal = "kitty";
       menu = "wofi --show drun";
+      bars = [ ];
     };
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
@@ -113,6 +114,16 @@
       titlebar_padding 1
       titlebar_border_thickness 0
       seat * xcursor_theme Adwaita 24
+
+      # Brightness
+      bindsym XF86MonBrightnessDown exec light -U 10
+      bindsym XF86MonBrightnessUp exec light -A 10
+
+      # Volume
+      bindsym XF86AudioRaiseVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+'
+      bindsym XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-'
+      bindsym XF86AudioMute exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'
+
     '';
     wrapperFeatures.gtk = true; # For launching GTK apps from sway
   };
