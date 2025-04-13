@@ -22,6 +22,10 @@
     "flakes"
   ];
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
   #make zsh the default shell
   programs.zsh.enable = true;
   environment.shells = with pkgs; [ zsh ];

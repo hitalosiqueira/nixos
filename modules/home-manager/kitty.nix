@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     settings = {
-      font_size = 16;
+      font_size = 14;
     };
 
     extraConfig = ''
