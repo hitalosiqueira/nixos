@@ -17,6 +17,16 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
+xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    config = {
+      common = {
+        default = "wlr";
+      };
+    };
+  };
+
   services.keyd = {
     enable = true;
     keyboards = {
