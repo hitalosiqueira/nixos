@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     nixfmt-rfc-style
     ripgrep
+    fd
   ];
 
   programs.nixvim = {
@@ -77,6 +78,7 @@
       vim-repeat
       vim-rhubarb
       vim-unimpaired
+      mini-icons
     ];
   };
 }
