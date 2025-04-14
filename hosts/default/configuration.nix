@@ -17,7 +17,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-xdg.portal = {
+  xdg.portal = {
     enable = true;
     wlr.enable = true;
     config = {
