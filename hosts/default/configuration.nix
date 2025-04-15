@@ -27,6 +27,8 @@
     };
   };
 
+  services.playerctld.enable = true;
+
   services.keyd = {
     enable = true;
     keyboards = {
