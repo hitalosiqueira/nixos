@@ -10,44 +10,10 @@
     inter
     orchis-theme
     adwaita-icon-theme
-    pavucontrol
-    playerctl
-    libnotify
-    nerd-fonts.ubuntu-sans
   ];
-
-  systemd.user.services.playerctld = {
-    Unit = {
-      Description = "Playerctld daemon";
-      After = [ "graphical-session.target" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.playerctl}/bin/playerctld";
-      Restart = "on-failure";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
 
   programs.waybar = {
     enable = true;
-    style = ''
-      * {
-        font-family: "Ubuntu Sans Nerd Font", sans-serif;
-        font-size: 14px;
-      }
-
-      #mpris {
-        padding: 0 10px;
-        color: #a6e3a1;
-        font-style: italic;
-      }
-
-      #mpris.paused {
-        opacity: 0.5;
-      }
-    '';
     settings = {
       mainBar = {
         layer = "top";
@@ -63,55 +29,25 @@
         ];
         modules-center = [
           "sway/window"
+          "custom/hello-from-waybar"
         ];
         modules-right = [
-          "mpris"
-          "network"
-          "pulseaudio"
-          "clock"
+          "mpd"
+          "custom/mymodule#with-css-id"
+          "temperature"
         ];
-
-        "network" = {
-          format-wifi = "  {essid} ({signalStrength}%)";
-          format-ethernet = "  {ifname}";
-          format-disconnected = "  Disconnected";
-          tooltip = true;
-          on-click = "kitty -e nmtui-connect";
-          tooltip-format = "{ifname} via {gwaddr}\nIPv4: {ipaddr}\nIPv6: {ip6addr}";
-        };
-
-        "mpris" = {
-          format = "{player_icon} {title}";
-          format-paused = " {player_icon} {title}";
-          format-playing = " {player_icon} {title}";
-          format-stopped = " Stopped";
-          player-icons = {
-            "spotify" = "";
-          };
-          max-length = 40;
-          on-click = "playerctl play-pause";
-          on-click-right = "playerctl next";
-          on-scroll-up = "playerctl previous";
-          on-scroll-down = "playerctl next";
-        };
-
-        "pulseaudio" = {
-          format = "{volume}% ";
-          format-muted = " muted";
-          scroll-step = 5;
-          on-click = "pavucontrol";
-        };
-
-        "clock" = {
-          interval = 60;
-          format = "{:%a %d %b  %H:%M}";
-          tooltip-format = "{:%A, %d %B %Y}";
-          timezone = "local";
-        };
 
         "sway/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
+        };
+        "custom/hello-from-waybar" = {
+          format = "hello {}";
+          max-length = 40;
+          interval = "once";
+          exec = pkgs.writeShellScript "hello-from-waybar" ''
+            echo "from within waybar"
+          '';
         };
       };
     };
