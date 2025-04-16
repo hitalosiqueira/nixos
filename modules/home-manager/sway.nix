@@ -14,6 +14,12 @@
 
   programs.waybar = {
     enable = true;
+    style = ''
+      * {
+        font-family: "Ubuntu Sans Nerd Font", sans-serif;
+        font-size: 14px;
+      }
+    '';
     settings = {
       mainBar = {
         layer = "top";
