@@ -40,6 +40,7 @@
         ];
         modules-right = [
           "pulseaudio"
+          "battery"
           "network"
           "clock"
         ];
@@ -56,6 +57,25 @@
           format-muted = " muted";
           scroll-step = 5;
           on-click = "pavucontrol";
+        };
+
+        "battery" = {
+          bat = "BAT0"; # Change to BAT1 if needed
+          format = "{capacity}% {icon}";
+          format-charging = "{capacity}% ⚡";
+          format-plugged = "{capacity}% 🔌";
+          format-alt = "{time}";
+
+          # Optional icons
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ]; # Nerd Font battery icons
+          tooltip = true;
+          interval = 30;
         };
 
         "network" = {
