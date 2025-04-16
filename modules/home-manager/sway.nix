@@ -32,9 +32,15 @@
         ];
         modules-right = [
           "mpd"
-          "custom/mymodule#with-css-id"
-          "temperature"
+          "clock"
         ];
+
+        "clock" = {
+          interval = 60;
+          format = "{:%a %d %b  %H:%M}";
+          tooltip-format = "{:%A, %d %B %Y}";
+          timezone = "local";
+        };
 
         "sway/workspaces" = {
           disable-scroll = true;
