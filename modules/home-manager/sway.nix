@@ -32,6 +32,7 @@
         ];
         modules-right = [
           "mpd"
+          "network"
           "clock"
         ];
 
@@ -40,6 +41,15 @@
           format = "{:%a %d %b  %H:%M}";
           tooltip-format = "{:%A, %d %B %Y}";
           timezone = "local";
+        };
+
+        "network" = {
+          format-wifi = "  {essid} ({signalStrength}%)";
+          format-ethernet = "  {ifname}";
+          format-disconnected = "  Disconnected";
+          tooltip = true;
+          on-click = "kitty -e nmtui-connect";
+          tooltip-format = "{ifname} via {gwaddr}\nIPv4: {ipaddr}\nIPv6: {ip6addr}";
         };
 
         "sway/workspaces" = {

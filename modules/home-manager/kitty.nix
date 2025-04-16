@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       font_size = 14;
+      confirm_os_window_close = 0;
     };
 
     extraConfig = ''
