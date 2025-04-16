@@ -10,6 +10,8 @@
     inter
     orchis-theme
     adwaita-icon-theme
+    nerd-fonts.ubuntu-sans
+    pavucontrol
   ];
 
   programs.waybar = {
@@ -37,7 +39,7 @@
           "sway/window"
         ];
         modules-right = [
-          "mpd"
+          "pulseaudio"
           "network"
           "clock"
         ];
@@ -47,6 +49,13 @@
           format = "{:%a %d %b  %H:%M}";
           tooltip-format = "{:%A, %d %B %Y}";
           timezone = "local";
+        };
+
+        "pulseaudio" = {
+          format = "{volume}% ";
+          format-muted = " muted";
+          scroll-step = 5;
+          on-click = "pavucontrol";
         };
 
         "network" = {
