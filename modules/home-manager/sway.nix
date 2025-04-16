@@ -12,7 +12,25 @@
     adwaita-icon-theme
     nerd-fonts.ubuntu-sans
     pavucontrol
+    playerctl
+    htop
   ];
+
+  systemd.user.services.playerctld = {
+    Unit = {
+      Description = "MPRIS controller daemon";
+      After = [ "default.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.playerctl}/bin/playerctld";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.startServices = "sd-switch";
 
   programs.waybar = {
     enable = true;
@@ -36,14 +54,35 @@
           "wlr/taskbar"
         ];
         modules-center = [
-          "sway/window"
+          "mpris"
         ];
         modules-right = [
           "pulseaudio"
           "battery"
+          "cpu"
+          "memory"
           "network"
           "clock"
         ];
+
+        "cpu" = {
+          format = " {usage}%";
+          interval = 1;
+          max-length = 10;
+        };
+
+        "memory" = {
+          format = " {used:0.1f}G / {total:0.1f}G";
+          interval = 3;
+          on-click = "kitty htop";
+        };
+        "mpris" = {
+          player = "spotify";
+          format = "{artist} - {title}";
+          format-paused = " {artist} - {title}";
+          format-stopped = "";
+          interval = 1;
+        };
 
         "clock" = {
           interval = 60;
