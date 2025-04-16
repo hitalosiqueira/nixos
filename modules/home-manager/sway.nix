@@ -29,7 +29,6 @@
         ];
         modules-center = [
           "sway/window"
-          "custom/hello-from-waybar"
         ];
         modules-right = [
           "mpd"
@@ -40,14 +39,6 @@
         "sway/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
-        };
-        "custom/hello-from-waybar" = {
-          format = "hello {}";
-          max-length = 40;
-          interval = "once";
-          exec = pkgs.writeShellScript "hello-from-waybar" ''
-            echo "from within waybar"
-          '';
         };
       };
     };
