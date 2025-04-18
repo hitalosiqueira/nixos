@@ -28,6 +28,9 @@
       catppuccin = {
         enable = true;
         autoLoad = true;
+        settings = {
+          transparent_background = true;
+        };
       };
     };
 
