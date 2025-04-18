@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -480,6 +480,8 @@
     font.name = "Inter";
   };
 
+  home.file."wallpaper.png".source = ./wallhaven-qzwxgq_2560x1600.png;
+
   wayland.windowManager.sway = {
     enable = true;
     xwayland = true;
@@ -490,7 +492,7 @@
       bars = [ ];
     };
     extraConfig = ''
-      exec swaybg -i ${pkgs.deepin.deepin-wallpapers}/share/wallpapers/deepin/deepin-theme-3.jpg
+      exec swaybg -i ${config.home.homeDirectory}/wallpaper.png -m fill
       exec swaymsg workspace 1
       exec waybar
       output * scale 1.5
