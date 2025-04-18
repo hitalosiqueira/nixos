@@ -390,8 +390,21 @@
           "memory"
           "network"
           "clock"
+          "bluetooth"
         ];
 
+        "bluetooth" = {
+          format = " {status}";
+          format-disabled = "";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          controller = "controller1"; # Replace with your actual controller name if needed
+          on-click = "blueman-manager";
+        };
         "cpu" = {
           format = " {usage}%";
           interval = 1;
@@ -463,7 +476,50 @@
 
   programs.wofi = {
     enable = true;
+    style = ''
+      window {
+        margin: 5px;
+        background-color: rgba(30, 30, 46, 0.9); /* Transparent Mocha base */
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+      }
+
+      #input {
+        margin: 10px;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: rgba(49, 50, 68, 0.8);
+        color: #cdd6f4;
+      }
+
+      #inner-box {
+        margin: 5px;
+        padding: 4px;
+        border-radius: 8px;
+      }
+
+      #outer-box {
+        margin: 10px;
+        padding: 10px;
+      }
+
+      #entry {
+        padding: 6px 10px;
+        margin: 4px;
+        border-radius: 8px;
+        color: #cdd6f4;
+      }
+
+      #entry:selected {
+        background-color: rgba(137, 180, 250, 0.5);
+        color: #1e1e2e;
+      }
+    '';
   };
+
+  # xdg.configFile."wofi/style.css".source = ./wofi.css;
 
   home.sessionVariables = {
     XCURSOR_THEME = "Adwaita"; # or "Bibata-Modern-Ice", etc.

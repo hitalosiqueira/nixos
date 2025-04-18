@@ -1,0 +1,41 @@
+window {
+  margin: 5px;
+  border: 2px solid #89b4fa;
+  background-color: rgba(30, 30, 46, 0.9); /* Transparent Mocha base */
+  border-radius: 12px;
+  font-family: "Noto Sans Nerd Font", sans-serif;
+  font-size: 14px;
+}
+
+#input {
+  margin: 10px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(49, 50, 68, 0.8);
+  color: #cdd6f4;
+}
+
+#inner-box {
+  margin: 5px;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+#outer-box {
+  margin: 10px;
+  padding: 10px;
+}
+
+#entry {
+  padding: 6px 10px;
+  margin: 4px;
+  border-radius: 8px;
+  color: #cdd6f4;
+}
+
+#entry:selected {
+  background-color: rgba(137, 180, 250, 0.5);
+  color: #1e1e2e;
+}
+
