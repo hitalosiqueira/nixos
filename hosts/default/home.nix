@@ -19,6 +19,23 @@
   home.username = "hsiq";
   home.homeDirectory = "/home/hsiq";
 
+
+  services.ssh-agent.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    addKeysToAgent = "yes";
+    matchBlocks = {
+      "vmlab" = {
+        hostname = "127.0.0.1";
+        user = "hsiq";
+        port = 2222;
+        identityFile = "~/.ssh/id_rsa"; # optional if you're using a key
+        forwardAgent = true;
+      };
+    };
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
