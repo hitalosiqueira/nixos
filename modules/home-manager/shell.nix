@@ -11,6 +11,8 @@
 
     shellAliases = {
       update = "sudo nixos-rebuild switch --flake /home/hsiq/nixos#default";
+      "mount-lab" = "sshfs hsiq@vmlab: ${config.home.homeDirectory}/workspace/server";
+      "unmount-lab" = "umount ${config.home.homeDirectory}/workspace/server";
     };
 
     zplug = {
