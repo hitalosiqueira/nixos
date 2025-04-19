@@ -12,29 +12,13 @@
     ../../modules/home-manager/sway.nix
     ../../modules/home-manager/tmux.nix
     ../../modules/home-manager/git.nix
+    ../../modules/home-manager/ssh.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "hsiq";
   home.homeDirectory = "/home/hsiq";
-
-
-  services.ssh-agent.enable = true;
-
-  programs.ssh = {
-    enable = true;
-    addKeysToAgent = "yes";
-    matchBlocks = {
-      "vmlab" = {
-        hostname = "127.0.0.1";
-        user = "hsiq";
-        port = 2222;
-        identityFile = "~/.ssh/id_rsa"; # optional if you're using a key
-        forwardAgent = true;
-      };
-    };
-  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
