@@ -46,6 +46,10 @@ in
         lookAndFeel = "org.kde.breezedark.desktop";
       };
 
+      configFile.kdeglobals.KDE = {
+        AnimationDurationFactor = 0;
+      };
+
       shortcuts.org_kde_powerdevil = {
         "powerProfile" = "";
       };
