@@ -10,7 +10,10 @@
     ./shell.nix
     ./git.nix
     ./tmux.nix
+    ./plasma.nix
   ];
+
+  
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -85,4 +88,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  plasma = {
+    enable = true;
+    terminal = "kitty";
+  };
 }
