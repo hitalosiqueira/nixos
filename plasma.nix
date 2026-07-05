@@ -144,6 +144,30 @@ in
         };
       };
 
+      configFile.krunnerrc = {
+        General = {
+          FreeFloating = true;
+          historyBehavior = "Disabled";
+        };
+
+        Plugins = {
+          browserhistoryEnabled = false;
+          browsertabsEnabled = false;
+          calculatorEnabled = true;
+          krunner_appstreamEnabled = true;
+          krunner_bookmarksrunnerEnabled = false;
+          krunner_katesessionsEnabled = false;
+          krunner_konsoleprofilesEnabled = false;
+          krunner_locationsrunnerEnabled = false;
+          krunner_recentdocumentsEnabled = false;
+          krunner_sessionsEnabled = false;
+          krunner_shellEnabled = true;
+          krunner_systemsettingsEnabled = true;
+          krunner_webshortcutsEnabled = false;
+          windowsEnabled = true;
+        };
+      };
+
       configFile.kwinrc = {
         Windows = {
           BorderlessMaximizedWindows = false;
