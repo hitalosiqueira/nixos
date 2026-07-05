@@ -96,6 +96,10 @@ in
         "Window Maximize" = "Meta+Shift+F";
 
         "Show Desktop" = "";
+        "Move Window Left" = "";
+        "Move Window Right" = "";
+        "Move Window Up" = "";
+        "Move Window Down" = "";
 
       };
       shortcuts.plasmashell = {
