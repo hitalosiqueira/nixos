@@ -11,7 +11,7 @@
   ];
 
   services.xserver.xkb.options = "caps:ctrl_modifier";
-  
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -43,6 +43,35 @@
     };
   };
   services.blueman.enable = true;
+
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.extraRules = ''
+    ACTION=="remove",\
+     ENV{ID_BUS}=="usb",\
+     ENV{ID_MODEL_ID}=="0407",\
+     ENV{ID_VENDOR_ID}=="1050",\
+     ENV{ID_VENDOR}=="Yubico",\
+     RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+  '';
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+  security.pam = {
+    services = {
+      login.u2fAuth = true;
+      sudo.u2fAuth = true;
+    };
+    yubico = {
+      enable = true;
+      debug = true;
+      control = "required";
+      mode = "challenge-response";
+      id = [ "36010506" ];
+    };
+  };
+  services.pcscd.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
