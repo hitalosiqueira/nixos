@@ -11,6 +11,7 @@
     ./git.nix
     ./tmux.nix
     ./plasma.nix
+    ./ssh.nix
   ];
 
   
