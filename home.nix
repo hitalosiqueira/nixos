@@ -33,6 +33,7 @@
   # environment.
   home.packages = with pkgs; [
     spotify
+    librepods
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
