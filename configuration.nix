@@ -42,7 +42,6 @@
       };
     };
   };
-  services.blueman.enable = true;
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.udev.extraRules = ''
