@@ -59,6 +59,7 @@
     enableSSHSupport = true;
   };
   security.pam = {
+    u2f.enable = true;
     services = {
       login.u2fAuth = true;
       sudo.u2fAuth = true;
@@ -66,7 +67,7 @@
     yubico = {
       enable = true;
       debug = true;
-      control = "required";
+      control = "sufficient";
       mode = "challenge-response";
       id = [ "36010506" ];
     };
@@ -159,6 +160,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    pam_u2f
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
