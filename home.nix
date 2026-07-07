@@ -35,6 +35,7 @@
     spotify
     librepods
     yubioath-flutter
+    brave
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -94,5 +95,6 @@
   plasma = {
     enable = true;
     terminal = "kitty";
+    browser = "brave";
   };
 }
