@@ -18,7 +18,7 @@
       ROCKET_PORT = 8222;
       DOMAIN = "https://vault.local";
 
-      SIGNUPS_ALLOWED = true;
+      SIGNUPS_ALLOWED = false;
       WEBSOCKET_ENABLED = true;
     };
   };
