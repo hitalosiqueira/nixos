@@ -10,6 +10,42 @@
     ./hardware-configuration.nix
   ];
 
+  services.vaultwarden = {
+    enable = true;
+
+    config = {
+      ROCKET_ADDRESS = "127.0.0.1";
+      ROCKET_PORT = 8222;
+      DOMAIN = "https://vault.local";
+
+      SIGNUPS_ALLOWED = true;
+      WEBSOCKET_ENABLED = true;
+    };
+  };
+
+  services.caddy = {
+    enable = true;
+
+    virtualHosts."vault.local".extraConfig = ''
+      tls internal
+      reverse_proxy 127.0.0.1:8222
+    '';
+  };
+
+  networking.hosts = {
+    "127.0.0.1" = [
+      "vault.local"
+    ];
+
+    "::1" = [
+      "vault.local"
+    ];
+  };
+
+  security.pki.certificates = [
+    (builtins.readFile ./certs/caddy-root.crt)
+  ];
+
   services.xserver.xkb.options = "caps:ctrl_modifier";
 
   # Bootloader.
