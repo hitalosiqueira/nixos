@@ -33,7 +33,7 @@
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+         ./system
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
