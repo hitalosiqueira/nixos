@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./secrets
   ];
 
   services.vaultwarden = {
@@ -26,12 +27,13 @@
   services.caddy = {
     enable = true;
 
-    virtualHosts."vault.local".extraConfig = ''
-      tls internal
+    virtualHosts."https://vault.local".extraConfig = ''
+      tls /var/lib/caddy/certs/vault.local.crt \
+          /var/lib/caddy/certs/vault.local.key
+
       reverse_proxy 127.0.0.1:8222
     '';
   };
-
   networking.hosts = {
     "127.0.0.1" = [
       "vault.local"
@@ -43,7 +45,7 @@
   };
 
   security.pki.certificates = [
-    (builtins.readFile ./certs/caddy-root.crt)
+    (builtins.readFile ./secrets/certs/ca.crt)
   ];
 
   services.xserver.xkb.options = "caps:ctrl_modifier";
@@ -197,6 +199,7 @@
     git
     pam_u2f
     wl-clipboard
+    openssl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -1,10 +1,17 @@
-{ inputs, pkgs, config, ... }: {
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
+{
 
   imports = [
-    inputs.sops-nix.homeManagerModules.sops
+    inputs.sops-nix.nixosModules.sops
+    ./vault-certs.nix
   ];
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     age
     sops
     ssh-to-age
@@ -13,8 +20,12 @@
   sops = {
     defaultSopsFile = ./secrets.yaml;
 
-    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    age.keyFile = "/var/lib/sops-nix/key.txt";
 
-    secrets = { };
+    secrets.ca-key = {
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
   };
 }
