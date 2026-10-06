@@ -48,12 +48,11 @@
         ];
       };
 
-      devShells.${system}.default = pkgs.mkShell {
+      devShells.${system}.go = pkgs.mkShell {
         packages = [
           pkgs.go
           pkgs.gopls
         ];
       };
-
     };
 }
