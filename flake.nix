@@ -28,12 +28,16 @@
       home-manager,
       ...
     }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in
     {
       nixosConfigurations.hsiq = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-        system = "x86_64-linux";
+        system = { inherit system; };
         modules = [
-         ./system
+          ./system
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -43,5 +47,13 @@
           }
         ];
       };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = [
+          pkgs.go
+          pkgs.gopls
+        ];
+      };
+
     };
 }
